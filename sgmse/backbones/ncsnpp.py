@@ -23,7 +23,7 @@ import numpy as np
 from sgmse.util.other import pad_spec
 import grid_attention_layer
 import networks_other
-
+from .utils_grid_attention import UnetConv3, UnetUp3, UnetGridGatingSignal3
 from .shared import BackboneRegistry
 
 ResnetBlockDDPM = layerspp.ResnetBlockDDPMpp
