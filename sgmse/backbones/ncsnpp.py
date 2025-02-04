@@ -121,6 +121,9 @@ class NCSNpp(nn.Module):
         AttnBlock_grid = functools.partial(grid_attention_layer.GridAttentionBlock3D, 
             inter_channels=inter_channels, gating_channels=gating_channels, dimension=3, mode=mode, sub_sample_factor=sub_sample_factor)    
 
+
+        self.gating = UnetGridGatingSignal3(filters[4], filters[3], kernel_size=(1, 1, 1), is_batchnorm=self.is_batchnorm)    
+
         Upsample = functools.partial(layerspp.Upsample, 
             with_conv=resamp_with_conv, fir=fir, fir_kernel=fir_kernel)
 
