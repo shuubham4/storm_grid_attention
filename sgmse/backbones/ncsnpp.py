@@ -21,6 +21,8 @@ import functools
 import torch
 import numpy as np
 from sgmse.util.other import pad_spec
+import grid_attention_layer
+import networks_other
 
 from .shared import BackboneRegistry
 
@@ -113,8 +115,11 @@ class NCSNpp(nn.Module):
         ### MODULES NATURES ###
         #######################
 
-        AttnBlock = functools.partial(layerspp.AttnBlockpp, 
-            init_scale=init_scale, skip_rescale=skip_rescale)
+        #AttnBlock = functools.partial(layerspp.AttnBlockpp, 
+        #    init_scale=init_scale, skip_rescale=skip_rescale)
+
+        AttnBlock = functools.partial(grid_attention_layer.GridAttentionBlock3D, 
+            init_scale=init_scale, skip_rescale=skip_rescale)    
 
         Upsample = functools.partial(layerspp.Upsample, 
             with_conv=resamp_with_conv, fir=fir, fir_kernel=fir_kernel)
