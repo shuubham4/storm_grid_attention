@@ -115,11 +115,11 @@ class NCSNpp(nn.Module):
         ### MODULES NATURES ###
         #######################
 
-        #AttnBlock = functools.partial(layerspp.AttnBlockpp, 
-        #    init_scale=init_scale, skip_rescale=skip_rescale)
+        AttnBlock = functools.partial(layerspp.AttnBlockpp, 
+            init_scale=init_scale, skip_rescale=skip_rescale)
 
-        AttnBlock = functools.partial(grid_attention_layer.GridAttentionBlock3D, 
-            init_scale=init_scale, skip_rescale=skip_rescale)    
+        AttnBlock_grid = functools.partial(grid_attention_layer.GridAttentionBlock3D, 
+            inter_channels=inter_channels, gating_channels=gating_channels, dimension=3, mode=mode, sub_sample_factor=sub_sample_factor)    
 
         Upsample = functools.partial(layerspp.Upsample, 
             with_conv=resamp_with_conv, fir=fir, fir_kernel=fir_kernel)
