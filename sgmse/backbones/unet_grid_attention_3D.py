@@ -1,5 +1,5 @@
 import torch.nn as nn
-from .utils import UnetConv3, UnetUp3, UnetGridGatingSignal3
+from .utils_grid_attention import UnetConv3, UnetUp3, UnetGridGatingSignal3
 import torch.nn.functional as F
 from models.layers.grid_attention_layer import GridAttentionBlock3D
 from models.networks_other import init_weights
