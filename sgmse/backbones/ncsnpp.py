@@ -388,8 +388,13 @@ class NCSNpp(nn.Module):
             for i_block in range(self.num_res_blocks + 1):
                 h = modules[m_idx](torch.cat([h, hs.pop()], dim=1), temb)
                 m_idx += 1
-
+            
             # edit: from -1 to -2
+
+            # create a gating meechanism here ..
+
+            # feed gated signal to 
+            
             if h.shape[-2] in self.attn_resolutions:
                 h = modules[m_idx](h)
                 m_idx += 1
@@ -866,6 +871,14 @@ class AutoEncodeNCSNpp(nn.Module):
                 h = modules[m_idx](torch.cat([h, hs.pop()], dim=1), temb)
                 m_idx += 1
 
+            # create gating mechanism here
+
+            # feed h to gate
+
+            # feed encoder output to gate
+
+            # feed h to next module 
+            
             # edit: from -1 to -2
             if h.shape[-2] in self.attn_resolutions:
                 h = modules[m_idx](h)
