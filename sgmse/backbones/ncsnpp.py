@@ -121,7 +121,7 @@ class NCSNpp(nn.Module):
         AttnBlock_grid = functools.partial(grid_attention_layer.GridAttentionBlock3D, 
             inter_channels=inter_channels, gating_channels=gating_channels, dimension=3, mode=mode, sub_sample_factor=sub_sample_factor)    
 
-
+        # gating mechanism created here .. 
         self.gating = UnetGridGatingSignal3(filters[4], filters[3], kernel_size=(1, 1, 1), is_batchnorm=self.is_batchnorm)    
 
         Upsample = functools.partial(layerspp.Upsample, 
@@ -391,7 +391,7 @@ class NCSNpp(nn.Module):
             
             # edit: from -1 to -2
 
-            # create a gating meechanism here ..
+            # gating mechanism created above  .. 
 
             # feed gated signal to 
             
@@ -872,11 +872,11 @@ class AutoEncodeNCSNpp(nn.Module):
                 m_idx += 1
 
             # create gating mechanism here
-
+            
             # feed h to gate
-
+            gating = self.gating(h)
             # feed encoder output to gate
-
+            
             # feed h to next module 
             
             # edit: from -1 to -2
