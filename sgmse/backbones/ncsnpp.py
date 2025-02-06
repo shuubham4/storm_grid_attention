@@ -238,7 +238,11 @@ class NCSNpp(nn.Module):
                 in_ch = out_ch
 
             if all_resolutions[i_level] in attn_resolutions:
-                modules.append(AttnBlock(channels=in_ch))
+                #modules.append(AttnBlock(channels=in_ch))
+                # replace AttnBlock with AttnBlock_grid
+                #AttnBlock_grid = functools.partial(grid_attention_layer.GridAttentionBlock3D, 
+                #inter_channels=inter_channels, gating_channels=gating_channels, dimension=3, mode=mode, sub_sample_factor=sub_sample_factor)  
+                modules.append(AttnBlock_grid(channels=in_ch))
 
             if progressive != 'none':
                 if i_level == num_resolutions - 1:
